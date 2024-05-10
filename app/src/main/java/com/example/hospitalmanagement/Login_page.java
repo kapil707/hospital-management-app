@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -45,6 +46,7 @@ public class Login_page extends AppCompatActivity {
     EditText user_name, password;
     TextView alert, termsofservice, create_new_btn;
     String user_name1 = "", password1 = "";
+    String user_id = "", name = "", username = "", mobile = "",status="",status_message="";
     UserSessionManager session;
     ProgressBar progressBar2;
     @Override
@@ -70,7 +72,7 @@ public class Login_page extends AppCompatActivity {
         password = (EditText) findViewById(R.id.user_password);
         termsofservice = findViewById(R.id.termsofservice);
         create_new_btn = findViewById(R.id.create_new);
-        create_new_btn.setText(Html.fromHtml("Don't have an account? <br><font color='#27ae60'>Request for login credentials</font>"));
+        create_new_btn.setText(Html.fromHtml("Don't have an account? <br><font color='#27ae60'>Create New Account</font>"));
 
         create_new_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +160,7 @@ public class Login_page extends AppCompatActivity {
 
     void get_login_api() {
         progressBar2.setVisibility(View.VISIBLE);
-        String username = user_name.getText().toString();
+        username = user_name.getText().toString();
         String password1 = password.getText().toString();
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
@@ -170,15 +172,12 @@ public class Login_page extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         String res = response.body().string();
-                        Toast.makeText(Login_page.this, res.toString(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Login_page.this, res.toString(), Toast.LENGTH_LONG).show();
                         //alert.setText(Html.fromHtml("<font>"+res.toString()+"</font>"));
 
-                        /*login_btn.setVisibility(View.VISIBLE);
+                        login_btn.setVisibility(View.VISIBLE);
                         login_btn1.setVisibility(View.GONE);
                         progressBar2.setVisibility(View.GONE);
-                        String otp_type = "0";
-                        String otp_sms = "";
-                        String otp_massage_txt = "";
 
                         if (!res.equals("")) {
 
@@ -191,14 +190,10 @@ public class Login_page extends AppCompatActivity {
                             JSONArray jArray1 = new JSONArray(items);
                             for (int i = 0; i < jArray1.length(); i++) {
                                 JSONObject jsonObject = jArray1.getJSONObject(i);
-                                user_session = jsonObject.getString("user_session");
-                                user_fname = jsonObject.getString("user_fname");
-                                user_code = jsonObject.getString("user_code");
-                                user_altercode = jsonObject.getString("user_altercode");
-                                user_type = jsonObject.getString("user_type");
-                                user_password = jsonObject.getString("user_password");
-                                user_image = jsonObject.getString("user_image");
-                                user_nrx = jsonObject.getString("user_nrx");
+                                user_id = jsonObject.getString("user_id");
+                                name = jsonObject.getString("name");
+                                username = jsonObject.getString("username");
+                                mobile = jsonObject.getString("mobile");
                                 status = jsonObject.getString("status");
                                 status_message = jsonObject.getString("status_message");
                             }
@@ -208,24 +203,17 @@ public class Login_page extends AppCompatActivity {
                         if (status.equals("1")) {
                             alert.setText(Html.fromHtml("<font color='#28a745'>" + status_message + "</font>"));
 
-                            if (otp_type.equals("0")) {
-                                session.createUserLoginSession(user_session, user_password, user_type, user_fname, user_code, user_altercode, user_image, user_division, user_compcode, user_compname, firebase_token);
 
-                                Intent in = new Intent();
-                                in.setClass(Login_page.this, MainActivity.class);
-                                startActivity(in);
-                                finish();
-                            } else {
-                                Intent in = new Intent();
-                                in.setClass(Login_page.this, Otp_page.class);
-                                in.putExtra("result", result);
-                                in.putExtra("firebase_token", firebase_token);
-                                startActivity(in);
-                                finish();
-                            }
+                            session.createUserLoginSession(user_id, name, username, mobile);
+
+                            Intent in = new Intent();
+                            in.setClass(Login_page.this, MainActivity.class);
+                            startActivity(in);
+                            finish();
+
                         } else {
                             alert.setText(Html.fromHtml("<font color='red'>" + status_message + "</font>"));
-                        }*/
+                        }
                     } catch (Exception e) {
                         login_btn.setVisibility(View.VISIBLE);
                         login_btn1.setVisibility(View.GONE);

@@ -189,7 +189,8 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:visibility="gone">
 
                     <CheckBox
                         android:id="@+id/checkBox"

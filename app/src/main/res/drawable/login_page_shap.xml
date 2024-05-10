@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <solid
-        android:color="@color/colorPrimary" >
+        android:color="@color/colorAccent">
     </solid>
     <!--<solid
         android:color="#FFE0B2" >

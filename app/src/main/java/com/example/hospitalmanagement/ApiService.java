@@ -17,4 +17,12 @@ public interface ApiService {
     Call<ResponseBody> login_api(
             @Field("username") String username,
             @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("create_user_api.php")
+    Call<ResponseBody> create_user_api(
+            @Field("name") String name,
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("mobile") String mobile);
 }

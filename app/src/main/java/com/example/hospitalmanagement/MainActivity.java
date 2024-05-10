@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         session = new UserSessionManager(getApplicationContext());
         HashMap<String, String> user = session.getUserDetails();
 
-        sendSmsToServer();
+        //sendSmsToServer();
         try {
             if (session.checkLogin()) {
                 finish();

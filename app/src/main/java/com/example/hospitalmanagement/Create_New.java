@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,8 +37,8 @@ import retrofit2.Response;
 public class Create_New extends AppCompatActivity {
     Button create_new_btn,create_new_btn1;
     TextView go_back_btn,alert;
-    EditText user_name1, phone_number1;
-    String user_name = "", phone_number = "";
+    EditText enter_name1,user_name1, phone_number1,password;
+    String enter_name = "",user_name = "", phone_number = "";
     ProgressBar progressBar2;
 
     @Override
@@ -51,12 +53,17 @@ public class Create_New extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
         }
 
+        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
+        progressBar2.setVisibility(View.GONE);
+
         create_new_btn = findViewById(R.id.create_new_btn);
         create_new_btn1 = findViewById(R.id.create_new_btn1);
 
         alert = (TextView) findViewById(R.id.user_alert);
+        enter_name1 = (EditText) findViewById(R.id.enter_name1);
         user_name1 = (EditText) findViewById(R.id.user_name1);
         phone_number1 = (EditText) findViewById(R.id.phone_number1);
+        password = (EditText) findViewById(R.id.user_password);
         go_back_btn = findViewById(R.id.go_back_btn);
         go_back_btn.setText(Html.fromHtml("Already have an account? <font color='#27ae60'>Login</font>"));
 
@@ -71,6 +78,7 @@ public class Create_New extends AppCompatActivity {
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
                 try {
+                    enter_name = enter_name1.getText().toString();
                     user_name = user_name1.getText().toString();
                     phone_number = phone_number1.getText().toString();
 
@@ -105,18 +113,44 @@ public class Create_New extends AppCompatActivity {
                 }
             }
         });
+
+        final ImageView eyes = findViewById(R.id.eyes);
+        final ImageView eyes1 = findViewById(R.id.eyes1);
+        eyes1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                eyes1.setVisibility(View.GONE);
+                eyes.setVisibility(View.VISIBLE);
+                password.setInputType(InputType.TYPE_CLASS_TEXT);
+                password.setSelection(password.getText().length());
+            }
+        });
+
+        eyes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                eyes.setVisibility(View.GONE);
+                eyes1.setVisibility(View.VISIBLE);
+                password.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                password.setSelection(password.getText().length());
+            }
+        });
     }
 
     private void get_create_new_api() {
         progressBar2.setVisibility(View.VISIBLE);
 
+        String enter_name = enter_name1.getText().toString();
         user_name = user_name1.getText().toString();
         phone_number = phone_number1.getText().toString();
+        String password1 = password.getText().toString();
 
-        /*ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseBody> call = apiService.get_create_new_api(
-                "98c08565401579448aad7c64033dcb4081906dcb",
-                user_name, phone_number);
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        Call<ResponseBody> call = apiService.create_user_api(
+                enter_name,user_name, password1,phone_number);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -127,6 +161,7 @@ public class Create_New extends AppCompatActivity {
                         progressBar2.setVisibility(View.GONE);
 
                         String res = response.body().string();
+                        //Toast.makeText(Create_New.this,res.toString(),Toast.LENGTH_SHORT).show();
                         if (!res.equals("")) {
                             JSONArray jArray0 = new JSONArray(res);
                             JSONObject jsonObject0 = jArray0.getJSONObject(0);
@@ -179,7 +214,7 @@ public class Create_New extends AppCompatActivity {
                 // Handle network failures or other errors
                 Log.e("drd-logs", "get_create_new_api Handle network failures or other errors " +t.toString());
             }
-        });*/
+        });
     }
 
     @Override

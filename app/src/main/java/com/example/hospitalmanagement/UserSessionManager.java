@@ -25,7 +25,9 @@ public class UserSessionManager {
     private static final String PREFER_NAME = "hospitalmanagement_db";
     private static final String IS_USER_LOGIN = "IsUserLoggedIn";
     public static final String KEY_USERID = "userid";
-
+    public static final String KEY_NAME = "name";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_MOBILE = "mobile";
     // Constructor
     public UserSessionManager(Context context){
         this._context = context;
@@ -34,11 +36,14 @@ public class UserSessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(String userid, String password,String user_type,String user_fname,String user_code,String user_altercode,String user_image,String user_phone,String user_email,String user_address,String firebase_token){
+    public void createUserLoginSession(String userid, String name,String username,String mobile){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
         editor.putString(KEY_USERID, userid);
+        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_USERNAME, username);
+        editor.putString(KEY_MOBILE, mobile);
         // commit changes
         editor.commit();
     }
@@ -84,6 +89,9 @@ public class UserSessionManager {
         //Use hashmap to store user credentials
         HashMap<String, String> user = new HashMap<String, String>();
         user.put(KEY_USERID, pref.getString(KEY_USERID, null));
+        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+        user.put(KEY_USERNAME, pref.getString(KEY_USERNAME, null));
+        user.put(KEY_MOBILE, pref.getString(KEY_MOBILE, null));
         return user;
     }
 
