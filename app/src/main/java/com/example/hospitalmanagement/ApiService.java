@@ -25,4 +25,9 @@ public interface ApiService {
             @Field("username") String username,
             @Field("password") String password,
             @Field("mobile") String mobile);
+
+    @FormUrlEncoded
+    @POST("mobile_hospital_api.php")
+    Call<ResponseBody> mobile_hospital_api(
+            @Field("id") String id);
 }

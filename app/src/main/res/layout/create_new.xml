@@ -40,7 +40,7 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:layout_gravity="right"
-                    android:text="Request for login credentials"
+                    android:text="Create New Account"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#FFFFFF"
                     android:textSize="25dip"

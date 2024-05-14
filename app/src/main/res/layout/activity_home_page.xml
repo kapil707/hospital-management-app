@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Home_page">
 
+    <include layout="@layout/menu"/>
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/background"
+        android:divider="@color/background_gray_color"
+        android:dividerHeight="0dp"
+        android:listSelector="@drawable/list_selector"  />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
