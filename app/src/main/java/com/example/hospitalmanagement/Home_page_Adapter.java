@@ -43,14 +43,12 @@ public class Home_page_Adapter extends BaseAdapter {
 
         ImageView item_image = itemView.findViewById(R.id.item_image);
 
-        TextView item_title = itemView.findViewById(R.id.item_title);
-        TextView item_message = itemView.findViewById(R.id.item_message);
-        TextView item_date_time = itemView.findViewById(R.id.item_date_time);
+        TextView item_lbl1 = itemView.findViewById(R.id.item_lbl1);
+        TextView item_lbl2 = itemView.findViewById(R.id.item_lbl2);
 
         Picasso.get().load(My_order_get.hospital_photo()).into(item_image);
-        item_title.setText(Html.fromHtml(My_order_get.hospital_name()));
-        item_message.setText(Html.fromHtml("Total : ₹ "+My_order_get.hospital_description()+"/-"));
-        item_date_time.setText(Html.fromHtml(My_order_get.doctor_name()));
+        item_lbl1.setText(Html.fromHtml(My_order_get.hospital_name()));
+        item_lbl2.setText(Html.fromHtml(My_order_get.hospital_description()));
         return itemView;
     }
 

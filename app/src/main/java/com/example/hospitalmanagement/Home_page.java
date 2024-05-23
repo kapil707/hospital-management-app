@@ -151,18 +151,12 @@ public class Home_page extends AppCompatActivity {
                                 String hospital_name = jsonObject.getString("hospital_name");
                                 String hospital_description = jsonObject.getString("hospital_description");
                                 String hospital_photo = jsonObject.getString("hospital_photo");
-                                String doctor_name = jsonObject.getString("doctor_name");
-                                String doctor_description = jsonObject.getString("doctor_description");
-                                String doctor_photo = jsonObject.getString("doctor_photo");
 
                                 Home_page_get_or_set Home_page_set = new Home_page_get_or_set();
                                 Home_page_set.id(id);
                                 Home_page_set.hospital_name(hospital_name);
                                 Home_page_set.hospital_description(hospital_description);
-                                Home_page_set.hospital_photo("https://www.bsinfra.in/hospitalmanagement/"+hospital_photo);
-                                Home_page_set.doctor_name(doctor_name);
-                                Home_page_set.doctor_description(doctor_description);
-                                Home_page_set.doctor_photo("https://www.bsinfra.in/hospitalmanagement/"+doctor_photo);
+                                Home_page_set.hospital_photo("https://www.skychannelnetwork.in/hospitalmanagement/"+hospital_photo);
                                 Home_page_List.add(Home_page_set);
                             }
                             //header_result_found.setText("Found result (" + result_total + ")");

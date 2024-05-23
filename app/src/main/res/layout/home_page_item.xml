@@ -32,10 +32,12 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp">
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/item_title"
+                    android:id="@+id/item_lbl1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -48,7 +50,7 @@
                     android:maxLines="2" />
 
                 <TextView
-                    android:id="@+id/item_message"
+                    android:id="@+id/item_lbl2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -59,17 +61,6 @@
                     android:layout_marginTop="3dp"
                     android:ellipsize="end"
                     android:maxLines="2" />
-
-                <TextView
-                    android:id="@+id/item_date_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="item_date_time"
-                    android:gravity="left"
-                    android:textColor="@color/item_date_time_color"
-                    android:textSize="14dp"
-                    android:layout_marginTop="3dp"/>
 
             </LinearLayout>
         </LinearLayout>
