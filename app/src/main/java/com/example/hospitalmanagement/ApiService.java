@@ -13,8 +13,8 @@ public interface ApiService {
     Call<ResponseBody> mobile_api(@Field("test") String test);
 
     @FormUrlEncoded
-    @POST("login_api.php")
-    Call<ResponseBody> login_api(
+    @POST("login_user_api.php")
+    Call<ResponseBody> login_user_api(
             @Field("username") String username,
             @Field("password") String password);
 
@@ -27,7 +27,7 @@ public interface ApiService {
             @Field("mobile") String mobile);
 
     @FormUrlEncoded
-    @POST("mobile_hospital_api.php")
+    @POST("home_page_api.php")
     Call<ResponseBody> mobile_hospital_api(
             @Field("id") String id);
 }

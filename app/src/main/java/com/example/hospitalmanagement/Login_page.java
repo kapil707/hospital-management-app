@@ -164,7 +164,7 @@ public class Login_page extends AppCompatActivity {
         String password1 = password.getText().toString();
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseBody> call = apiService.login_api(
+        Call<ResponseBody> call = apiService.login_user_api(
                 username, password1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
