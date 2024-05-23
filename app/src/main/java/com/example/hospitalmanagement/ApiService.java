@@ -28,6 +28,11 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("home_page_api.php")
-    Call<ResponseBody> mobile_hospital_api(
+    Call<ResponseBody> home_page_api(
+            @Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("search_page_api.php")
+    Call<ResponseBody> search_page_api(
             @Field("id") String id);
 }

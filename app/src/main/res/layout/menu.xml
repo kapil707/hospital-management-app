@@ -95,6 +95,18 @@
             </LinearLayout>
         </LinearLayout>
 
+
+
+        <ImageView
+            android:id="@+id/search_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/search_white"/>
+
         <ImageButton
             android:id="@+id/menu_button"
             android:layout_width="wrap_content"
@@ -108,17 +120,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/menu_loading1"
             android:indeterminateTint="@color/background_white"
-            android:visibility="gone"/>
-
-        <ImageView
-            android:id="@+id/newmysearchbtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:srcCompat="@drawable/search_white"
             android:visibility="gone"/>
 
         <ImageButton

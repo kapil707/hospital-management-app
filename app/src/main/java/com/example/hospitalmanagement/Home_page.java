@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -52,11 +54,22 @@ public class Home_page extends AppCompatActivity {
             }
         });
 
+        ImageView search_btn = findViewById(R.id.search_btn);
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent in = new Intent();
+                in.setClass(Home_page.this, Search_page.class);
+                startActivity(in);
+            }
+        });
+
         listview = findViewById(R.id.listView1);
         adapter = new Home_page_Adapter(Home_page.this, Home_page_List);
         listview.setAdapter(adapter);
 
-        mobile_hospital_api();
+        home_page_api();
     }
     private void showPopupMenu(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
@@ -111,12 +124,12 @@ public class Home_page extends AppCompatActivity {
                 .setNegativeButton("No", dialogClickListener).show();
     }
 
-    void mobile_hospital_api() {
+    void home_page_api() {
 
         String id = "";
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseBody> call = apiService.mobile_hospital_api(
+        Call<ResponseBody> call = apiService.home_page_api(
                 id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
