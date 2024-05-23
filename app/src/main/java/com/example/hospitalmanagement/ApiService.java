@@ -35,4 +35,16 @@ public interface ApiService {
     @POST("search_page_api.php")
     Call<ResponseBody> search_page_api(
             @Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("hospital_wise_doctor_api.php")
+    Call<ResponseBody> hospital_wise_doctor_api(
+            @Field("hospital_id") String hospital_id);
+
+    @FormUrlEncoded
+    @POST("send_user_query_api.php")
+    Call<ResponseBody> send_user_query_api(
+            @Field("name") String name,
+            @Field("mobile") String mobile,
+            @Field("message") String message);
 }

@@ -26,9 +26,7 @@
                 android:contentDescription="ok"
                 android:background="@drawable/back_button"
                 android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_margin="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,51 +45,7 @@
                     android:textSize="20dp"
                     android:textColor="#FFFFFF"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="-3dp">
 
-                    <TextView
-                        android:id="@+id/action_bar_title1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="Large Text"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16dp"
-                        tools:text="Title"
-                        android:visibility="gone"/>
-
-                    <LinearLayout
-                        android:id="@+id/edit_chemist"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/edit_icon_w" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:singleLine="true"
-                            android:text="Edit chemist"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16dp"
-                            tools:text="Edit chemist"
-                            android:layout_marginLeft="5dip"/>
-                    </LinearLayout>
-
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -105,7 +59,18 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:srcCompat="@drawable/search_white"/>
+            app:srcCompat="@drawable/search_white"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/action_bar_progressBar"
+            android:indeterminateTint="@color/background_white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/menu_button"
@@ -113,57 +78,10 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu"
             android:background="?attr/selectableItemBackground"
-            android:padding="8dp"/>
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/menu_loading1"
-            android:indeterminateTint="@color/background_white"
-            android:visibility="gone"/>
-
-        <ImageButton
-            android:id="@+id/delete_all_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription="ok"
-            android:background="@drawable/delete_icon_w"
-            android:layout_gravity="center"
+            android:padding="8dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="gone"/>
+            android:layout_marginBottom="10dp"/>
 
-        <LinearLayout
-            android:id="@+id/cart_LinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/cart"
-                android:contentDescription="ok" />
-
-            <TextView
-                android:id="@+id/action_bar_cart_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-2dp"
-                android:layout_marginTop="-10dp"
-                android:background="@drawable/cart_shap"
-                android:text=" 0 "
-                android:textColor="#423B3B"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

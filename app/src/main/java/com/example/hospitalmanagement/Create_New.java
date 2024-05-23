@@ -1,9 +1,7 @@
 package com.example.hospitalmanagement;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -17,9 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -174,7 +170,7 @@ public class Create_New extends AppCompatActivity {
                                 String status_message = jsonObject.getString("status_message");
                                 if(status.equals("1")) {
                                     Intent in = new Intent();
-                                    in.setClass(Create_New.this, Create_New_thank_you.class);
+                                    in.setClass(Create_New.this, Thankyou_page.class);
                                     in.putExtra("status_message", status_message);
                                     startActivity(in);
                                     finish();

@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -28,6 +30,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Home_page extends AppCompatActivity {
+
+    ProgressBar action_bar_progressBar;
     UserSessionManager session;
     ListView listview;
     Home_page_Adapter adapter;
@@ -35,10 +39,12 @@ public class Home_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.home_page);
 
         session = new UserSessionManager(getApplicationContext());
         HashMap<String, String> user = session.getUserDetails();
+
+        action_bar_progressBar = findViewById(R.id.action_bar_progressBar);
 
         ImageButton action_bar_back = findViewById(R.id.action_bar_back);
         action_bar_back.setVisibility(View.GONE);
@@ -54,20 +60,26 @@ public class Home_page extends AppCompatActivity {
             }
         });
 
-        ImageView search_btn = findViewById(R.id.search_btn);
-        search_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent in = new Intent();
-                in.setClass(Home_page.this, Search_page.class);
-                startActivity(in);
-            }
-        });
-
         listview = findViewById(R.id.listView1);
         adapter = new Home_page_Adapter(Home_page.this, Home_page_List);
         listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                Home_page_get_or_set clickedCategory = Home_page_List.get(arg2);
+
+                Intent open_page = new Intent();
+                open_page.setClass(Home_page.this, Hospital_view.class);
+                open_page.putExtra("id", clickedCategory.id());
+                open_page.putExtra("hospital_photo", clickedCategory.hospital_photo());
+                open_page.putExtra("hospital_name", clickedCategory.hospital_name());
+                open_page.putExtra("hospital_description", clickedCategory.hospital_description());
+                startActivity(open_page);
+            }
+        });
 
         home_page_api();
     }
@@ -127,6 +139,7 @@ public class Home_page extends AppCompatActivity {
     void home_page_api() {
 
         String id = "";
+        action_bar_progressBar.setVisibility(View.VISIBLE);
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         Call<ResponseBody> call = apiService.home_page_api(
@@ -152,28 +165,33 @@ public class Home_page extends AppCompatActivity {
                                 String hospital_description = jsonObject.getString("hospital_description");
                                 String hospital_photo = jsonObject.getString("hospital_photo");
 
-                                Home_page_get_or_set Home_page_set = new Home_page_get_or_set();
-                                Home_page_set.id(id);
-                                Home_page_set.hospital_name(hospital_name);
-                                Home_page_set.hospital_description(hospital_description);
-                                Home_page_set.hospital_photo("https://www.skychannelnetwork.in/hospitalmanagement/"+hospital_photo);
-                                Home_page_List.add(Home_page_set);
+                                Home_page_get_or_set set = new Home_page_get_or_set();
+                                set.id(id);
+                                set.hospital_name(hospital_name);
+                                set.hospital_description(hospital_description);
+                                set.hospital_photo("https://www.skychannelnetwork.in/hospitalmanagement/"+hospital_photo);
+                                Home_page_List.add(set);
                             }
                             //header_result_found.setText("Found result (" + result_total + ")");
                             adapter.notifyDataSetChanged();
+                            action_bar_progressBar.setVisibility(View.GONE);
                         }
-                    } catch (Exception e) {// TODO: handle exception
-                        Log.e("drd-logs", "get_login_api Error parsing data" + e.toString());
+                    } catch (Exception e) {
+                        action_bar_progressBar.setVisibility(View.GONE);
+                        // TODO: handle exception
+                        Log.e("drd-logs", "home_page_api Error parsing data" + e.toString());
                     }
                 } else {
+                    action_bar_progressBar.setVisibility(View.GONE);
                     // Handle error response
-                    Log.e("drd-logs", "get_login_api Handle error response");
+                    Log.e("drd-logs", "home_page_api Handle error response");
                 }
             }
 
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                action_bar_progressBar.setVisibility(View.GONE);
                 // Handle network failures or other errors
-                Log.e("drd-logs", "get_login_api Handle network failures or other errors " +t.toString());
+                Log.e("drd-logs", "home_page_api Handle network failures or other errors " +t.toString());
             }
         });
     }

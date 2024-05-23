@@ -16,6 +16,12 @@
         android:theme="@style/Theme.HospitalManagement"
         tools:targetApi="31">
         <activity
+            android:name=".Doctor_view"
+            android:exported="false" />
+        <activity
+            android:name=".Hospital_view"
+            android:exported="false" />
+        <activity
             android:name=".Search_page"
             android:exported="false" />
         <activity
@@ -40,7 +46,7 @@
             android:usesCleartextTraffic="false" />
 
         <activity
-            android:name=".Create_New_thank_you"
+            android:name=".Thankyou_page"
             android:keepScreenOn="true"
             android:screenOrientation="portrait" />
         <activity

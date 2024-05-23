@@ -41,7 +41,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Login_page extends AppCompatActivity {
-    String result = "", firebase_token = "";
     Button login_btn, login_btn1;
     EditText user_name, password;
     TextView alert, termsofservice, create_new_btn;
