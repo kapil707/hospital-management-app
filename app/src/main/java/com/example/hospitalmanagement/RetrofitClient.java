@@ -11,7 +11,7 @@ public class RetrofitClient {
     public static Retrofit getRetrofitInstance(){
         if(retrofit==null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://www.skychannelnetwork.in/hospitalmanagement/api/")
+                    .baseUrl("https://www.skychannelnetwork.in/hospitalmanagement/mobile_api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
